@@ -31,7 +31,7 @@ handleSubmit(event) {
 componentDidMount() {
     this.roomsRef.on('child_added', snapshot => {
       const room = snapshot.val();
-    //  room.key = snapshot.key; //
+      /* room.key = snapshot.key; */
       this.setState({ rooms: this.state.rooms.concat( room ) })
       console.log(this.state.rooms);
      });
@@ -41,7 +41,7 @@ render() {
     return (
       <div className='roomlist'>
         { this.state.rooms.map( (room) =>
-          <li key={ room.key }> { room }</li>
+          <li key={ room.key }> { room.name }</li>
         )}
 
         <form onSubmit={this.handleSubmit}>
@@ -51,7 +51,7 @@ render() {
           </label>
           <input type="submit" value="Submit" />
         </form>
-      </div>
+        </div>
     );
   }
 }
