@@ -26,3 +26,60 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.loading {
+  color: #ffbf3f;
+}
+.loading .block {
+  width: 5px;
+  height: 5px;
+  margin-left: 2px;
+  margin-right: 2px;
+  display: inline-block;
+  border-radius: 50%;
+  animation: 1.5s loading infinite;
+}
+.loading .block:nth-child(1) {
+  background: #ffbf3f;
+  animation-delay: 0s;
+}
+.loading .block:nth-child(2) {
+  background: #ffbf3f;
+  animation-delay: 0.5s;
+}
+.loading .block:nth-child(3) {
+  background: #ffbf3f;
+  animation-delay: 1s;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateY(0px);
+    border-radius: 50%;
+  }
+  15% {
+    transform: translateY(-5px);
+    border-radius: 50%;
+  }
+  20% {
+    height: 5px;
+    border-radius: 50%;
+  }
+  25% {
+    border-radius: 10px 10px 5px 5px;
+    height: 2px;
+    transform: translateY(0px);
+  }
+  30% {
+    height: 5px;
+    border-radius: 50%;
+    transform: translateX(0px);
+  }
+  100% {
+    border-radius: 50%;
+    transform: translateX(0px);
+  }
+}
+
+li{
+  padding: 10px;
+}

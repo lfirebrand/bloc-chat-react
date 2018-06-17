@@ -40,8 +40,17 @@ componentDidMount() {
 render() {
     return (
       <div className='roomlist'>
-        { this.state.rooms.map( (room) =>
-          <li key={ room.key }> { room.name }</li>
+        {
+          !this.state.rooms.length > 0 ? (
+
+          <div className="loading">
+            <div className="block"></div>
+            <div className="block"></div>
+            <div className="block"></div>
+          </div>
+          ) :
+          this.state.rooms.map( (room, index) =>
+          <li key={ index }> { room.name }</li>
         )}
 
         <form onSubmit={this.handleSubmit}>
