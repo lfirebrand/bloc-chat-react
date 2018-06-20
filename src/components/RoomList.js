@@ -6,8 +6,9 @@ class RoomList extends Component {
       this.state = {
        rooms: [],
        value:'',
-       activeRoom: ''
+       activeRoom: room
  };
+ 
   this.handleSubmit = this.handleSubmit.bind(this);
   this.handleChange = this.handleChange.bind(this);
   this.roomsRef = this.props.firebase.database().ref('rooms');
