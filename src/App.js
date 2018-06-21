@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   selectActiveRoom(room) {
-    this.state({ activeRoom: room })
+    this.setState({ activeRoom: room })
   }
 
   render() {
@@ -42,7 +42,6 @@ class App extends Component {
         </main>
         <section>
         <MessageList firebase= { firebase }
-          firebase={firebase}
           activeRoom = {this.state.activeRoom}
         />
         </section>
