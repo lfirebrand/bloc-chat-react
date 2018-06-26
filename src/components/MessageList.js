@@ -5,15 +5,8 @@ class MessageList extends Component {
     super(props);
     this.state = {
      messages: [],
-     rooms: [],
-     value:'',
-     activeRoom: ''
 };
-<<<<<<< HEAD
 this.messagesRef = this.props.firebase.database().ref('Messages');
-=======
-this.messagesRef = this.props.firebase.database().ref('/Messages/');
->>>>>>> listmessages
 };
 
 componentDidMount() {
