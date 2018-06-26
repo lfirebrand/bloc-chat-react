@@ -9,7 +9,11 @@ class MessageList extends Component {
      value:'',
      activeRoom: ''
 };
+<<<<<<< HEAD
 this.messagesRef = this.props.firebase.database().ref('Messages');
+=======
+this.messagesRef = this.props.firebase.database().ref('/Messages/');
+>>>>>>> listmessages
 };
 
 componentDidMount() {
