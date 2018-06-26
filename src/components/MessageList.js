@@ -4,9 +4,12 @@ class MessageList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     messages: []
+     messages: [],
+     rooms: [],
+     value:'',
+     activeRoom: ''
 };
-this.messagesRef = this.props.firebase.database().ref('Messages');
+this.messagesRef = this.props.firebase.database().ref('/Messages/');
 };
 
 componentDidMount() {
