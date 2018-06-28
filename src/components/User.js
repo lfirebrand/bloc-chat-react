@@ -12,12 +12,6 @@ class User extends Component {
     };
   }
 
-componentDidMount() {
-    this.props.firebase.auth().onAuthStateChanged( user => {
-    this.props.setUser(user);
-    });
-}
-
 login() {
   firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
@@ -45,11 +39,18 @@ signOut() {
   });
 }
 
+componentDidMount() {
+    firebase.auth().onAuthStateChanged( user => {
+    this.props.setUser(user);
+    });
+  }
+
 render() {
     return (
       <section className="user-page">
         <button onClick={() => this.login()}>Sign-in</button>
   			<button onClick={() => this.signOut()}>Sign-out</button>
+        <div>Logged in: {this.props.user ? this.props.user.displayName : 'Guest'} </div>
         </section>
       )
     }

@@ -27,18 +27,21 @@ class App extends Component {
 
 selectActiveRoom(room) {
     this.setState({ activeRoom: room })
-}
+  }
 
 setUser(user) {
     this.setState({ user: user });
-}
+  }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to Bloc Chat</h1>
-          <User />
+          <User firebase = { firebase}
+            user = {this.state.user}
+            setUser = {this.setUser.bind(this)}
+           />
         </header>
         <main>
         <RoomList firebase={ firebase }
