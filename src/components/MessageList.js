@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import * as firebase from 'firebase';
+
+const Firebase = require('firebase');
 
 class MessageList extends Component {
   constructor(props) {
     super(props);
     this.state = {
      messages: [],
-     user: '',
-     content: '',
-     sentAt: '',
-     roomId: '',
-     newMessageContent: ''
+     value: '',
+     activeRoom: '',
+     username: '',
+     newMessage: '',
 };
-this.handleMessageChange = this.handleMessageChange.bind(this);
+
+this.handleSubmit = this.handleSubmit.bind(this);
 this.handleChange = this.handleChange.bind(this);
 this.messagesRef = this.props.firebase.database().ref('Messages');
-this.createMessage = this.createMessage.bind(this);
 };
 
 componentDidMount() {
@@ -28,27 +28,28 @@ componentDidMount() {
      });
 }
 
+createMessage(value) {
+  this.messagesRef.push({
+  content: this.state.value,
+  username: this.props.user ? this.props.user.displayName : 'Guest',
+  sentAt: Firebase.database.ServerValue.TIMESTAMP,
+  roomId: this.props.activeRoom.key
+  });
+}
+
 handleChange(event) {
    this.setState({
-     content: event.target.value,
+     value: event.target.value,
+  /*   roomId: this.state.activeRoom,
      username: this.props.user,
-     sentAt: this.firebase.database.ServerValue.TIMESTAMP,
-     roomId: this.props.activeRoom.key
+     sentAt: this.firebase.database.ServerValue.TIMESTAMP */
    });
  }
 
-handleMessageChange(event){
-    this.setState({newMessageContent:event.target.value})
-  }
-
-createMessage(value) {
-  this.messagesRef.push({
-  content: this.state.newMessageContent,
-  username: this.props.user.displayName,
-  sentAt: this.firebase.database.ServerValue.TIMESTAMP,
-  roomId: this.props.activeRoom.key
-  });
-  this.setState({newMessageContent:''})
+handleSubmit(event) {
+  this.createMessage();
+  event.preventDefault();
+  this.setState({value: ''});
 }
 
 render() {
@@ -61,10 +62,10 @@ render() {
            <li key={index}>{message.username}: {message.content} | Sent at: {message.sentAt}</li>
          )}
 
-         <form onSubmit={(event) => { this.createNewMessage(event) }}>
+         <form onSubmit={this.handleSubmit}>
            <label>
            Message:
-           <input type="text" placeholder="Say something cool" value={this.state.newMessageContent} onChange={this.handleMessageChange} />
+           <input type="text" value={this.state.value} onChange={this.handleChange} />
            </label>
            <input type="submit" value="Submit" />
          </form>
