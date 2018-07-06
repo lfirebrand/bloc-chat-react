@@ -9,7 +9,8 @@ class MessageList extends Component {
      messages: [],
      value: '',
      activeRoom: '',
-     username: '',
+     user: '',
+     displayName: '',
      newMessage: '',
 };
 
@@ -31,7 +32,7 @@ componentDidMount() {
 createMessage(value) {
   this.messagesRef.push({
   content: this.state.value,
-  username: this.props.user ? this.props.user.displayName : 'Guest',
+  username: this.props.user ? this.props.user.displayName: 'Guest',
   sentAt: Firebase.database.ServerValue.TIMESTAMP,
   roomId: this.props.activeRoom.key
   });
