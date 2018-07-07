@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 const Firebase = require('firebase');
 
@@ -33,7 +34,7 @@ createMessage(value) {
   this.messagesRef.push({
   content: this.state.value,
   username: this.props.user ? this.props.user.displayName: 'Guest',
-  sentAt: Firebase.database.ServerValue.TIMESTAMP,
+  sentAt: moment().format('MMMM Do YYYY, h:mm:ss a'),
   roomId: this.props.activeRoom.key
   });
 }
@@ -41,9 +42,6 @@ createMessage(value) {
 handleChange(event) {
    this.setState({
      value: event.target.value,
-  /*   roomId: this.state.activeRoom,
-     username: this.props.user,
-     sentAt: this.firebase.database.ServerValue.TIMESTAMP */
    });
  }
 
